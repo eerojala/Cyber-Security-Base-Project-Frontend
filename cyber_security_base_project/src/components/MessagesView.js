@@ -2,9 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { MessageCreationForm } from './MessageCreationForm'
+import MessageCreationForm from './MessageCreationForm'
 
 class MessagesView extends React.Component {
+    form = () => {
+        if (this.props.loggedInUser === null || this.props.loggedInUser === undefined) {
+            return null
+        } else {
+            return <MessageCreationForm />
+        }
+    }
+    
     render() {
         return (
             <div>
@@ -23,14 +31,14 @@ class MessagesView extends React.Component {
                         </Table.Row>)}
                     </Table.Body>
                 </Table>
-                <MessageCreationForm />
+                {this.form()}
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return { messages: state.messages }
+    return { messages: state.messages, loggedInUser: state.loggedInUser }
 }
 
-export default connect(mapStateToProps) (MessageTable)
+export default connect(mapStateToProps) (MessagesView)

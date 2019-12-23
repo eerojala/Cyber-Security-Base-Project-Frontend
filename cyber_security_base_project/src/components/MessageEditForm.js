@@ -9,12 +9,18 @@ class MessageEditForm extends React.Component {
     editMessage = async (event) => {
         event.preventDefault()
 
-        await this.props.messageEdit({
+        const userInput = {
             title: event.target.title.value,
             content: event.target.content.value
-        })
+        }
 
-        this.props.redirect('/')
+        const editedMessage = await this.props.messageEdit(this.props.message.id, userInput)
+
+        if (editedMessage) {
+            this.props.redirect('/')
+        } else {
+            alert('fdsfdfsdf')
+        }
     }
 
     render() {
@@ -28,8 +34,8 @@ class MessageEditForm extends React.Component {
             <div>
                 <h3>Edit this message</h3>
                 <Form onSubmit={this.editMessage}>
-                    <Form.Field label="Title" name="title" control="input" value={message.title} />
-                    <Form.Field label="Message" name="content" control="input" value={message.content} />
+                    <Form.Field label="Title" name="title" control="input" defaultValue={message.title} />
+                    <Form.Field label="Message" name="content" control="input" defaultValue={message.content} />
                     <Button type="submit">Edit</Button>
                 </Form>
                 <Redirector />

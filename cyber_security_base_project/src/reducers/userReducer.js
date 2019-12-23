@@ -31,6 +31,8 @@ export const userCreation = (content) => {
                 type: 'NEW_USER',
                 data: newUser
             })
+
+            return newUser
         } catch (exception) {
             console.log(exception) // Detailed error message on console?
         }

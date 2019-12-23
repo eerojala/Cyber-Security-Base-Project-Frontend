@@ -10,10 +10,10 @@ class MessageView extends React.Component {
             return null
         }
 
-        const editLink = this.props.loggedInUser === message.user ?
+        const editLink = this.props.loggedInUser !== null && this.props.loggedInUser.id === message.user._id ?
         <Link to={`/messages/${message.id}/edit`}>Edit</Link>:
         null
-        // edit to use innerhtml
+
         return (
             <div key={message.id}>
                 <h2>{message.title}</h2>
@@ -33,7 +33,8 @@ const mapStateToProps = (state, props) => {
     }
 
     return {
-        message: state.messages.find(message => message.id === messageId)
+        message: state.messages.find(message => message.id === messageId),
+        loggedInUser: state.loggedInUser
     }
 }
 

@@ -1,5 +1,4 @@
 import messageService from '../services/messageService'
-import { tsExpressionWithTypeArguments } from '@babel/types';
 
 const messageReducer = (state = [], action) => {
     switch (action.type) {
@@ -9,7 +8,7 @@ const messageReducer = (state = [], action) => {
             return state.concat(action.data)
         case 'EDIT_MESSAGE':
             const messages = state.filter(message => message.id !== action.data.id)
-            return messages.concat(action.data)
+            return messages.concat(action.data.updatedMessage)
         default:
             return state
     }
@@ -30,7 +29,7 @@ export const messageCreation = (content) => {
     return async (dispatch) => {
         try {
             const newMessage = await messageService.create(content)
-
+            
             dispatch({
                 type: 'NEW_MESSAGE',
                 data: newMessage
@@ -50,8 +49,11 @@ export const messageEdit = (id, content) => {
             const updatedMessage = await messageService.update(id, content)
 
             dispatch({
-                type: 'UPDATE_MESSAGE',
-                data: updatedMessage
+                type: 'EDIT_MESSAGE',
+                data:  { 
+                    updatedMessage,
+                    id
+                }
             })
 
             return updatedMessage

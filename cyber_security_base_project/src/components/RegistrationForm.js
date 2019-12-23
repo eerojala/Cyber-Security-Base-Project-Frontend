@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Button } from 'semantic-ui-react'
-import { Redirector } from './Redirector'
+import  Redirector from './Redirector'
 import { userCreation } from '../reducers/userReducer'
 import { redirect } from '../reducers/redirectReducer'
 
-class UserRegistrationForm extends React.Component {
+class RegistrationForm extends React.Component {
     createUser = async (event) => {
         event.preventDefault()
 
@@ -13,7 +13,7 @@ class UserRegistrationForm extends React.Component {
             username: event.target.username.value, 
             password: event.target.password.value
         })
-
+       
         if (user) {
             alert('New user created successfully, you may now login with your credentials')
             this.props.redirect('/login')
@@ -27,8 +27,8 @@ class UserRegistrationForm extends React.Component {
             <div>
                 <h3>Register a new account</h3>
                 <Form onSubmit={this.createUser}>
-                    <Form.Field label="Username" name="Username" control="input" />
-                    <Form.Field label="Password" name="Password" control="input" type="password" />
+                    <Form.Field label="Username" name="username" control="input" />
+                    <Form.Field label="Password" name="password" control="input" type="password" />
                     <Button type="submit">Register</Button>
                 </Form>
                 <Redirector />
@@ -39,4 +39,4 @@ class UserRegistrationForm extends React.Component {
 
 const mapDispatchToProps = { userCreation, redirect } 
 
-export default connect(null, mapDispatchToProps) (UserRegistrationForm)
+export default connect(null, mapDispatchToProps) (RegistrationForm)

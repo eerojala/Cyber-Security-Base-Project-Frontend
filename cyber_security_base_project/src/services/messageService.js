@@ -15,7 +15,7 @@ const getOne = async (id) => {
     return response.data
 }
 
-const create = async () => {
+const create = async (content) => {
     const response = await axios.post(baseUrl, content, getConfig())
 
     return response.data

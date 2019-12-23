@@ -27,7 +27,7 @@ class NavigationBar extends React.Component {
 
     logoutMenuItem = () => {
         return this.userLoggedIn() ?
-            <Menu.Item onClick={this.props.logout}>Logout></Menu.Item>:
+            <Menu.Item onClick={this.props.logout}>Logout</Menu.Item>:
             null
     }
 

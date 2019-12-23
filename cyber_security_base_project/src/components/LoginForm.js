@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Form, Button } from 'semantic-ui-react'
 import Redirector from './Redirector'
 import { login } from '../reducers/loginReducer'
 import { redirect } from '../reducers/redirectReducer'
@@ -29,14 +30,11 @@ class LoginForm extends React.Component {
         return (
             <div>
                 <h2>Log in</h2>
-                <form onSubmit={this.sendLoginCredentials}>
-                    <div>
-                        Username: <input name="username" />
-                    </div>
-                    <div>
-                        Password: <input name="password" type="password" />
-                    </div>
-                </form>
+                <Form onSubmit={this.sendLoginCredentials}>
+                    <Form.Field label="Username" name="username" control="input" />
+                    <Form.Field label="Password" name="password" control="input" type="password" />
+                    <Button type="submit">Login</Button>
+                </Form>
                 <Redirector />
             </div>
         )
