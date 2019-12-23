@@ -28,12 +28,12 @@ class App extends React.Component {
                             <Link to="/">Messageboard</Link>
                         </h1>
                         <NavigationBar />
-                        <Route exact path="/login" render={() => <LoginForm />} />
+                        <Route exact path="/" render={() => <MessagesView />} />
+                        <Route path="/login" render={() => <LoginForm />} />
                         <Route exact path="/messages" render={() => <MessagesView />} />
                         <Route exact path="/messages/:id" render={({ match }) => <MessageView messageId={match.params.id} />} />
                         <Route exact path="/messages/:id/edit" render={({ match }) => <MessageEditForm messageId={match.params.id} />} />
-                        <Route exact path="/register" render={() => <RegistrationForm />} />
-                        <Route exact path="/" render={() => <MessagesView />} />
+                        <Route path="/register" render={() => <RegistrationForm />} />        
                     </div>
                 </Router>
             </Container>

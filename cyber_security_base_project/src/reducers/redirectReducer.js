@@ -18,7 +18,7 @@ export const redirect = (path) => {
 
         setTimeout(() => {
             dispatch({
-                type: 'NULLIFY REDIRECT'
+                type: 'NULLIFY_REDIRECT'
             }, 100)
         })
     }

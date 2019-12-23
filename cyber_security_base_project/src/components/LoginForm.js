@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
         const user = await this.props.login(credentials)
 
         if (user !== null) {
-            this.props.redirect('')
+            this.props.redirect('/')
         } else {
             alert('Login failed')
         }

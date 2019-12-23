@@ -18,7 +18,7 @@ class MessageView extends React.Component {
             <div key={message.id}>
                 <h2>{message.title}</h2>
                 <p>From: {message.user.username}</p>
-                <p>{message.content}</p>
+                <div dangerouslySetInnerHTML={{"__html": message.content}} />
                 <p>{editLink}</p>
             </div>
         )
